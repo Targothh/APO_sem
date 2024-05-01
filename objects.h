@@ -33,7 +33,7 @@ typedef struct GameState {
     int game_over;      // Indikátor konce hry
 } GameState;
 
-void init_background(GameField *field);
+void init_background(GameField *field, uint16_t color);
 
 void init_player(GameField *field, int player, int x, int y, int width, int height, int speed);
 
