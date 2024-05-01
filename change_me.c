@@ -15,11 +15,6 @@
 
 #define _POSIX_C_SOURCE 200112L
 
-#define BLACK   0x0000
-#define WHITE   0xFFFF
-#define RED     0xF800
-#define GREEN   0x07E0
-
 
 #include <stdlib.h>
 #include <stdio.h>

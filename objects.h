@@ -42,3 +42,5 @@ void init_ball(GameField *field, int x, int y, int radius, int speed_x, int spee
 void move_ball(GameField *field);
 
 void move_player(GameField *field, int player, int direction);
+
+void draw_player(GameField *field, int player);

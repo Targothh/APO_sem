@@ -5,6 +5,12 @@
 #include "mzapo_phys.h"
 #include "mzapo_regs.h"
 
+
+#define BLACK   0x0000
+#define WHITE   0xFFFF
+#define RED     0xF800
+#define GREEN   0x07E0
+
 // init green background
 
 void init_background(GameField *field, uint16_t color){
@@ -63,3 +69,29 @@ void move_player(GameField *field, int player, int direction){
         }
     }
 }
+
+void draw_player(GameField *field, int player){
+    if (player == 1){
+        for (int x = field->player1.x; x < field->player1.x + field->player1.width; x++){
+            for (int y = field->player1.y; y < field->player1.y + field->player1.height; y++){
+                parlcd_write_data(field->parlcd_mem_base, WHITE);
+            }
+        }
+    }
+    else if (player == 2){
+        for (int x = field->player2.x; x < field->player2.x + field->player2.width; x++){
+            for (int y = field->player2.y; y < field->player2.y + field->player2.height; y++){
+                parlcd_write_data(field->parlcd_mem_base, WHITE);
+            }
+        }
+    }
+}
+
+void draw_ball(GameField *field){
+    for (int x = field->ball.x - field->ball.radius; x < field->ball.x + field->ball.radius; x++){
+        for (int y = field->ball.y - field->ball.radius; y < field->ball.y + field->ball.radius; y++){
+            parlcd_write_data(field->parlcd_mem_base, WHITE);
+        }
+    }
+}
+
