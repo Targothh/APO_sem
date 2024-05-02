@@ -37,27 +37,33 @@ int main(int argc, char *argv[])
     return 1;
   }
 
-  /* Serialize execution of applications */
-
-  /* Try to acquire lock the first */
-  if (serialize_lock(1) <= 0) {
-    printf("System is occupied\n");
-
-    if (1) {
-      printf("Waitting\n");
-      /* Wait till application holding lock releases it or exits */
-      serialize_lock(0);
-    }
+  unsigned char *spiled_base;
+  spiled_base = map_phys_address(SPILED_REG_BASE_PHYS, SPILED_REG_SIZE, 0);
+  if (spiled_base == NULL) {
+    return 1;
   }
 
-  printf("Hello world\n");
+  // /* Serialize execution of applications */
 
-  sleep(4);
+  // /* Try to acquire lock the first */
+  // if (serialize_lock(1) <= 0) {
+  //   printf("System is occupied\n");
 
-  printf("Goodbye world\n");
+  //   if (1) {
+  //     printf("Waitting\n");
+  //     /* Wait till application holding lock releases it or exits */
+  //     serialize_lock(0);
+  //   }
+  // }
 
-  /* Release the lock */
-  serialize_unlock();
+  // printf("Hello world\n");
+
+  // sleep(4);
+
+  // printf("Goodbye world\n");
+
+  // /* Release the lock */
+  // serialize_unlock();
 
   return 0;
 }

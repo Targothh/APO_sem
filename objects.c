@@ -19,6 +19,15 @@ void init_background(GameField *field, uint16_t color){
             parlcd_write_data(field->parlcd_mem_base, color);
         }
     }
+    init_net(field);
+}
+
+void init_net(GameField *field){
+    for (int x = field->width / 2; x < field->width / 2 + 2; x++){
+        for (int y = 0; y < field->height; y++){
+            parlcd_write_data(field->parlcd_mem_base, WHITE);
+        }
+    }
 }
 
 void init_player(GameField *field, int player, int x, int y, int width, int height, int speed){
