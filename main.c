@@ -1,19 +1,10 @@
-/*******************************************************************
-  Project main function template for MicroZed based MZ_APO board
-  designed by Petr Porazil at PiKRON
-
-  change_me.c      - main file
-
-  include your name there and license for distribution.
-
-  Remove next text: This line should not appear in submitted
-  work and project name should be change to match real application.
-  If this text is there I want 10 points subtracted from final
-  evaluation.
-
- *******************************************************************/
 
 #define _POSIX_C_SOURCE 200112L
+
+#define BLACK   0x0000
+#define WHITE   0xFFFF
+#define RED     0xF800
+#define GREEN   0x07E0
 
 
 #include <stdlib.h>
@@ -41,6 +32,12 @@ int main(int argc, char *argv[])
   spiled_base = map_phys_address(SPILED_REG_BASE_PHYS, SPILED_REG_SIZE, 0);
   if (spiled_base == NULL) {
     return 1;
+  }
+
+  for (int i = 0; i < 480; i++) {
+    for (int j = 0; j < 320; j++) {
+      parlcd_write_data(parlcd_mem_base, GREEN);
+    }
   }
 
   // /* Serialize execution of applications */
