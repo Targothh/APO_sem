@@ -11,9 +11,8 @@ typedef struct Player {
 typedef struct Ball {
     int x;              // Pozice míčku na ose x
     int y;              // Pozice míčku na ose y
-    int radius;         // Poloměr míčku
-    int speed_x;        // Rychlost míčku na ose x
-    int speed_y;        // Rychlost míčku na ose y
+    int size;         // Velikost míčku
+    int speed;        // Rychlost míčku na ose x
 } Ball;
 
 typedef struct GameField {
@@ -22,7 +21,6 @@ typedef struct GameField {
     Player player1;     // První hráč
     Player player2;     // Druhý hráč
     Ball ball;          // Míček
-    uint16_t background_color; // Barva pozadí
     unsigned char *parlcd_mem_base; // Adresa řídicího registru
 } GameField;
 
@@ -37,7 +35,7 @@ void init_background(GameField *field, uint16_t color);
 
 void init_player(GameField *field, int player, int x, int y, int width, int height, int speed);
 
-void init_ball(GameField *field, int x, int y, int radius, int speed_x, int speed_y);
+void init_ball(GameField *field, int x, int y, int size, int speed);
 
 void move_ball(GameField *field);
 

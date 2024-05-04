@@ -17,6 +17,7 @@
 #include "mzapo_phys.h"
 #include "mzapo_regs.h"
 #include "serialize_lock.h"
+#include "objects.h"
 
 int main(int argc, char *argv[])
 {
@@ -34,11 +35,37 @@ int main(int argc, char *argv[])
     return 1;
   }
 
-  for (int i = 0; i < 480; i++) {
-    for (int j = 0; j < 320; j++) {
-      parlcd_write_data(parlcd_mem_base, GREEN);
-    }
-  }
+  GameField field;
+  Ball ball;
+  Player player1;
+  Player player2;
+
+  init_game(&field, &player1, &player2, &ball, parlcd_mem_base);
+
+  // for (int i = 0; i < 480; i++) {
+  //   for (int j = 0; j < 320; j++) {
+  //     parlcd_write_data(parlcd_mem_base, GREEN);
+  //   }
+  // }
+
+  // while(1){
+  //   uint32_t knob_rgb = *(volatile uint32_t*)(spiled_base + SPILED_REG_KNOBS_8BIT_o);
+  //   uint16_t rgb565 = ((knob_rgb & 0xff) >> 3) | ((knob_rgb >> 5) & (0x3f << 5)) | ((knob_rgb >> 16) & (0x1f << (11)));
+  //   *(volatile uint32_t*)(spiled_base + SPILED_REG_LED_LINE_o ) = knob_rgb;
+  //   printf("0x%08x\n", ((knob_rgb >> 16) & (0x1f << (11))));
+  //   parlcd_write_cmd(parlcd_mem_base, 0x2c);
+  //   for (int i = 0; i < 480 * 320; i++){
+  //     parlcd_write_data(parlcd_mem_base, rgb565);
+  //   }
+  // }
+
+  // led_state = 0xff;
+
+  // for(int i = 0; i <1000; i++){
+  //   *(volatile uint32_t*)(spiled_base + SPILED_REG_LED_LINE_o) = 0xaa5500ff;
+  //   sleep(1);
+  //   led_state = (led_state << 1) | ((led_state >> 31) & 1);
+  // }
 
   // /* Serialize execution of applications */
 
