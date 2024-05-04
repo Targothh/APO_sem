@@ -42,12 +42,6 @@ int main(int argc, char *argv[])
 
   init_game(&field, &player1, &player2, &ball, parlcd_mem_base);
 
-  // for (int i = 0; i < 480; i++) {
-  //   for (int j = 0; j < 320; j++) {
-  //     parlcd_write_data(parlcd_mem_base, GREEN);
-  //   }
-  // }
-
   // while(1){
   //   uint32_t knob_rgb = *(volatile uint32_t*)(spiled_base + SPILED_REG_KNOBS_8BIT_o);
   //   uint16_t rgb565 = ((knob_rgb & 0xff) >> 3) | ((knob_rgb >> 5) & (0x3f << 5)) | ((knob_rgb >> 16) & (0x1f << (11)));
