@@ -1,4 +1,4 @@
-#include "objects.h"
+#include <stdlib.h>
 #include "mzapo_parlcd.h"
 #include "mzapo_phys.h"
 #include "mzapo_regs.h"
@@ -12,13 +12,13 @@
 
 uint16_t * buffer_init(){
     uint16_t * buffer;
-    buffer = calloc(buffer, WIDTH * HEIGHT);
+    buffer = (uint16_t*)calloc(sizeof(uint16_t), WIDTH * HEIGHT);
     return buffer;
 }
 
-void draw(uint16_t buffer, unsigned char *parlcd_mem_base){
+void draw(uint16_t *buffer, unsigned char *parlcd_mem_base){
     parlcd_write_cmd(parlcd_mem_base, 0x2c);
-    for(int i; i < WIDTH * HEIGHT; i++){
-        parlcd_write_data(parlcd_mem_base, buffer + i);
+    for(int i = 0; i < WIDTH * HEIGHT; i++){
+        parlcd_write_data(parlcd_mem_base, buffer[i]);
     }
 }
