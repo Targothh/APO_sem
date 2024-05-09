@@ -6,14 +6,19 @@
 #define WHITE   0xFFFF
 #define RED     0xF800
 #define GREEN   0x07E0
-uint16_t * buffer_init(GameField *field){
+
+#define HEIGHT 320
+#define WIDTH 480
+
+uint16_t * buffer_init(){
     uint16_t * buffer;
-    buffer = calloc(buffer, field ->height * field ->height);
-    draw(field, buffer);
+    buffer = calloc(buffer, WIDTH * HEIGHT);
+    return buffer;
 }
 
-void draw(GameField *field, uint16_t buffer){
-    for(int i; i < field ->height * field ->height; i++){
-        parlcd_write_data(field->parlcd_mem_base, buffer+i);
+void draw(uint16_t buffer, unsigned char *parlcd_mem_base){
+    parlcd_write_cmd(parlcd_mem_base, 0x2c);
+    for(int i; i < WIDTH * HEIGHT; i++){
+        parlcd_write_data(parlcd_mem_base, buffer + i);
     }
 }
